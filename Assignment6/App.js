@@ -1,29 +1,39 @@
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './screens/HomeScreen';
-import CartScreen from './screens/CartScreen';
+import HomeScreen from './components/HomeScreen';
+import CartScreen from './components/CartScreen';
 import { enableScreens } from 'react-native-screens';
+import { Ionicons } from '@expo/vector-icons';
+
 
 enableScreens();
 
-const Stack = createNativeStackNavigator();
+const Tabs = createBottomTabNavigator();
 
 export default function App() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen
-                    name="Home"
-                    component={HomeScreen}
-                    options={{ headerShown: false }} // Hide header for HomeScreen
-                />
-                <Stack.Screen
-                    name="Cart"
-                    component={CartScreen}
-                    options={{ title: 'Your Cart' }} // Set title for CartScreen
-                />
-            </Stack.Navigator>
+          <Tabs.Navigator>
+            <Tabs.Screen name="Home" component={HomeScreen}
+              options={{
+                headerShown: false,
+                tabBarIcon: ({ color, size }) => (
+                  <Ionicons name="home" size={size} color={color} />
+                ),
+              }}
+            />
+
+
+            <Tabs.Screen name="Cart" component={CartScreen}
+              options={{
+                headerShown: false,
+                tabBarIcon: ({ color, size }) => (
+                  <Ionicons name="cart" size={size} color={color} />
+                ),
+              }}
+            />
+          </Tabs.Navigator>
         </NavigationContainer>
     );
 }
