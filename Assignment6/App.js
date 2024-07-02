@@ -23,8 +23,6 @@ export default function App() {
                 ),
               }}
             />
-
-
             <Tabs.Screen name="Cart" component={CartScreen}
               options={{
                 headerShown: false,
